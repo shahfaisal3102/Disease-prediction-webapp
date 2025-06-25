@@ -33,13 +33,12 @@ working_dir = os.path.dirname(os.path.abspath(__file__))
 # Sidebar for navigation
 with st.sidebar:
     selected = option_menu('Multiple Disease Prediction System Menu',
-                           ['Diabetes', 'Heart Disease', 'Kidney Disease'],
+                           ['Home','Diabetes', 'Heart Disease', 'Kidney Disease'],
                            menu_icon='hospital-fill',
                            icons=['activity', 'heart', 'person'],
                            default_index=0)
 
 # Input fields
-
 if selected == "Diabetes":
     
     # Page Title
