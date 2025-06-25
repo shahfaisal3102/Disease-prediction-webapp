@@ -14,13 +14,12 @@ scalar = pickle.load(open('Saved Models/Ckd_scalar.sav', 'rb'))
 
 # Set page configuration
 st.set_page_config(page_title="Health Assistant",
-                   page_icon="🩺",layout="centered")
+                   page_icon="🧬",layout="centered")
 
-# st.title("Health Assistant")
-# st.image("D:\Disease prediction\icons\kidney.png", width=80)  # Optional icon image
+st.image("logo.png", width=100) 
 st.markdown("""
     <h1 style='text-align: center; color: white;'>
-        🩺 Health Assistant
+         Health Assistant
     </h1>
     <hr>
 """, unsafe_allow_html=True)
@@ -35,8 +34,30 @@ with st.sidebar:
     selected = option_menu('Multiple Disease Prediction System Menu',
                            ['Home','Diabetes', 'Heart Disease', 'Kidney Disease'],
                            menu_icon='hospital-fill',
-                           icons=['activity', 'heart', 'person'],
+                           icons=['house','activity', 'heart', 'person'],
                            default_index=0)
+
+if selected == "Home":
+
+    st.markdown("<h2 style='text-align: center;'>🩺 Welcome to Health Assistant</h2>", unsafe_allow_html=True)
+
+  
+
+    st.markdown("""
+        <p style='text-align: center; font-size:18px;'>
+        This web app helps you predict the likelihood of:
+        <b>Diabetes Disease</b>, <b>Heart Disease</b>, and <b>Chronic Kidney Disease</b>
+        using Machine Learning models.
+        </p>
+
+        <p style='text-align: center; font-size:16px;'>
+        🔹 Choose a disease from the sidebar<br>
+        🔹 Enter medical details<br>
+        🔹 Instantly get predictions
+        </p>
+
+        <hr>
+    """, unsafe_allow_html=True)
 
 # Input fields
 if selected == "Diabetes":
