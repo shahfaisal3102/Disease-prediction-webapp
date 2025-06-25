@@ -17,6 +17,7 @@ st.set_page_config(page_title="Health Assistant",
                    page_icon="🧬",layout="centered")
 
 st.image("logo.png", width=100) 
+
 st.markdown("""
     <h1 style='text-align: center; color: white;'>
          Health Assistant
