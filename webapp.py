@@ -7,10 +7,10 @@ import pandas as pd
 
 # Loading the model
 
-Diabetes_model = pickle.load(open('D:\Disease prediction\Saved Models\Diabetes_model.sav', 'rb'))
-Heart_model = pickle.load(open('D:\Disease prediction\Saved Models\Heart_model.sav', 'rb'))
-Ckd_model = pickle.load(open('D:\Disease prediction\Saved Models\CKD_model.sav', 'rb'))
-scalar = pickle.load(open('D:\Disease prediction\Saved Models\Ckd_scalar.sav', 'rb'))
+Diabetes_model = pickle.load(open('Saved Models/Diabetes_model.sav', 'rb'))
+Heart_model = pickle.load(open('Saved Models/Heart_model.sav', 'rb'))
+Ckd_model = pickle.load(open('Saved Models/CKD_model.sav', 'rb'))
+scalar = pickle.load(open('Saved Models/Ckd_scalar.sav', 'rb'))
 
 # Set page configuration
 st.set_page_config(page_title="Health Assistant",
