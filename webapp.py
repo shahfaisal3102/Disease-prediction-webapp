@@ -57,7 +57,7 @@ if selected == "Home":
         <hr>
     """, unsafe_allow_html=True)
 
-    if st.button("🖐️ Go to Prediction Menu"):
+    if st.button("Lets go"):
         st.session_state.redirect_to = "Diabetes"
         st.rerun()
 
