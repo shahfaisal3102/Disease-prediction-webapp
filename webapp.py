@@ -13,52 +13,53 @@ Ckd_model = pickle.load(open('Saved Models/CKD_model.sav', 'rb'))
 scalar = pickle.load(open('Saved Models/Ckd_scalar.sav', 'rb'))
 
 # Set page configuration
-st.set_page_config(page_title="Health Assistant",
-                   page_icon="🧬",layout="centered")
+st.set_page_config(page_title="Health Assistant", page_icon="🧪", layout="centered")
 
-st.image("logo.png", width=100) 
+# Initialize session state for menu selection
+if "menu_selection" not in st.session_state:
+    st.session_state.menu_selection = "Home"
 
+if "redirect_to" in st.session_state and st.session_state.redirect_to:
+    st.session_state.menu_selection = st.session_state.redirect_to
+    st.session_state.redirect_to = None
+
+# Logo & header
+st.image("logo.png", width=100)
 st.markdown("""
-    <h1 style='text-align: center; color: white;'>
-         Health Assistant
-    </h1>
-    <hr>
+    <h1 style='text-align: center;'>Health Assistant</h1><hr>
 """, unsafe_allow_html=True)
 
-# getting the working directory of the main.py
-
-os.system('pip install streamlit-option-menu')
-working_dir = os.path.dirname(os.path.abspath(__file__))
-
-# Sidebar for navigation
+# Sidebar
 with st.sidebar:
-    selected = option_menu('Multiple Disease Prediction System Menu',
-                           ['Home','Diabetes', 'Heart Disease', 'Kidney Disease'],
-                           menu_icon='hospital-fill',
-                           icons=['house','activity', 'heart', 'person'],
-                           default_index=0)
+    selected = option_menu("Multiple Disease Prediction System Menu",
+                           ["Home", "Diabetes", "Heart Disease", "Kidney Disease"],
+                           icons=["house", "activity", "heart", "person"],
+                           menu_icon="hospital-fill",
+                           default_index=["Home", "Diabetes", "Heart Disease", "Kidney Disease"].index(st.session_state.menu_selection))
 
+# Update menu selection
+st.session_state.menu_selection = selected
+
+# ---------------- HOME PAGE ----------------
 if selected == "Home":
-
-    st.markdown("<h2 style='text-align: center;'>🩺 Welcome to Health Assistant</h2>", unsafe_allow_html=True)
-
-  
-
     st.markdown("""
+        <h2 style='text-align: center;'>🏠 Welcome to Health Assistant</h2>
         <p style='text-align: center; font-size:18px;'>
         This web app helps you predict the likelihood of:
-        <b>Diabetes Disease</b>, <b>Heart Disease</b>, and <b>Chronic Kidney Disease</b>
+        <b>Diabetes</b>, <b>Heart Disease</b>, and <b>Chronic Kidney Disease</b>
         using Machine Learning models.
         </p>
-
         <p style='text-align: center; font-size:16px;'>
         🔹 Choose a disease from the sidebar<br>
         🔹 Enter medical details<br>
         🔹 Instantly get predictions
         </p>
-
         <hr>
     """, unsafe_allow_html=True)
+
+    if st.button("🖐️ Go to Prediction Menu"):
+        st.session_state.redirect_to = "Diabetes"
+        st.rerun()
 
 # Input fields
 if selected == "Diabetes":
