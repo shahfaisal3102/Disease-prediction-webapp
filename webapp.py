@@ -1,32 +1,23 @@
 import streamlit as st
 from streamlit_option_menu import option_menu
-from auth import login
 import numpy as np
 import pickle
 
 st.set_page_config(page_title="Health Assistant", layout="wide")
 
-# Session State Initialization
-if 'logged_in' not in st.session_state:
-    st.session_state['logged_in'] = False
-
-# Check login status
-if not st.session_state['logged_in']:
-    login()
-else:
-    # Show navbar if logged in
- selected = option_menu(
+# Show navbar if logged in
+selected = option_menu(
     menu_title=None,
-    options=["Home", "Disease Predictor", "About",  "Logout"],
-    icons=["house", "activity", "info", "box-arrow-right"],
+    options=["Home", "Disease Predictor", "About"],
+    icons=["house", "activity", "info"],
     menu_icon="cast",
     default_index=0,
     orientation="horizontal"
 )
 
- if selected == "Home":
+if selected == "Home":
     st.title("🏥 Welcome to Health Assistant")
-    st.write(f"Hello, {st.session_state['username']}! You’re logged in.")
+
     st.markdown("""
         This web app helps you predict the likelihood of:
         <b>Diabetes</b>, <b>Heart Disease</b>, and <b>Chronic Kidney Disease</b>
@@ -40,14 +31,14 @@ else:
         <hr>
     """, unsafe_allow_html=True)
 
- elif selected == "Disease Predictor":
+elif selected == "Disease Predictor":
 
     st.title("🧪 Disease Predictor")
 
-    Diabetes_model = pickle.load(open('Saved Models/Diabetes_model.sav', 'rb'))
-    Heart_model = pickle.load(open('Saved Models/Heart_model.sav', 'rb'))
-    Ckd_model = pickle.load(open('Saved Models/CKD_model.savv', 'rb'))
-    scalar = pickle.load(open('Saved Models/Ckd_scalar.sav', 'rb'))
+    Diabetes_model = pickle.load(open('D:/Disease prediction/Saved Models/Diabetes_model.sav', 'rb'))
+    Heart_model = pickle.load(open('D:/Disease prediction/Saved Models/Heart_model.sav', 'rb'))
+    Ckd_model = pickle.load(open('D:/Disease prediction/Saved Models/CKD_model.sav', 'rb'))
+    scalar = pickle.load(open('D:/Disease prediction/Saved Models/Ckd_scalar.sav', 'rb'))
     
     disease = st.selectbox("Select Disease to Predict", ["Diabetes", "Heart Disease", "Kidney Disease"])
     
@@ -136,7 +127,7 @@ else:
             st.success("🧪 CKD Prediction: YES" if prediction[0][0] == 0 else "✅ CKD Prediction: NO")
             st.info(f"Predicted Stage: {prediction[0][1]}")
 
- elif selected == "About":
+elif selected == "About":
 
     st.title("ℹ️ About & 📬 Contact")
     
@@ -168,9 +159,7 @@ else:
         🌐 **GitHub:** [github.com/shahfaisal3102](https://github.com/)  
         """)
 
- elif selected == "Logout":
-    st.session_state['logged_in'] = False
-    st.rerun()
+
 
     # Footer
 def footer():
