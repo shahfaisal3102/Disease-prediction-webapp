@@ -153,9 +153,9 @@ elif selected == "About":
     with tab2:
         st.subheader("Developer Info")
         st.markdown("""
-        **👨‍💻 Developer:** Shah Faisal Khan | Rupesh Kumar 
+        **👨‍💻 Developer:** Shah Faisal Khan | Rupesh Kumar  
         📧 **Email:** [shahfaisal3102@gmail.com](mailto:shahfaisal3102@gmail.com) | [k.23rupeshji@gmail.com](mailto:k.23rupeshji@gmail.com)  
-        📞 **Phone:** +91 8744020553 | +91 7827289937
+        📞 **Phone:** +91 8744020553 | +91 7827289937 
         🌐 **GitHub:** [github.com/shahfaisal3102](https://github.com/)  
         """)
 
